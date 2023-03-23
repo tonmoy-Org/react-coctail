@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import Drinks from './component/Drinks/Drinks';
+import Footer from './component/Footer/Footer';
+import Header from './component/Header/Header';
+import Random from './component/Random/Random';
 
 function App() {
+  const[searchQuery, setSearchQuery] = useState([]);
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onSearch={handleSearch}></Header>
+      <Random></Random>
+      <Drinks searchQuery={searchQuery}></Drinks>
+      <Footer></Footer>
     </div>
   );
 }
